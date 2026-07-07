@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace必须和Mapper接口的全限定类名一致 -->
+<mapper namespace="com.itheima.mapper.ArticleMapper">
+
+    <!-- id必须和Mapper接口中的方法名一致，resultType是返回的实体类全限定类名 -->
+    <select id="list" resultType="com.itheima.pojo.Article">
+        select * from article
+        where create_user=#{userId}
+        <if test="categoryId != null">
+            and category_id=#{categoryId}
+        </if>
+        <if test="state != null and state != ''">
+            and state=#{state}
+        </if>
+    </select>
+
+</mapper>
